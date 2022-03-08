@@ -1,0 +1,39 @@
+{% extends "books/base.html" %}
+{% block content %}
+    <div class="content-section">
+           <div class="wrapper">
+                <div class="logo"> <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> </div>
+                    <div class="text-center mt-4 name"> Dictionary</div>
+                            <form class="p-3 mt-3" method="POST">
+                            {% csrf_token %}
+                                <div class="form-field d-flex align-items-center">  <input type="text" name="text"  placeholder="Search any word"> </div>
+                                <button class="btn mt-3" type="submit">Search</button>
+                           </form>
+           </div>
+    </div>
+
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <h3 class="mr-2">{{ word }}</h3>
+            </div>
+            <h4>Here is the meaning:</h4>
+                <p class="article-content">
+                  {{meaning}}
+                </p>
+            <h4>Here are the synonyms:</h4>
+            {% for synonym in synonyms %}
+              <small class="article-content">
+              {{ synonym }},
+              </small>
+            {% endfor %}
+             <h4>Here are the antonyms:</h4>
+            {% for antonym in antonyms %}
+              <small class="article-content">
+              {{antonym}},
+              </small>
+            {% endfor %}
+          </div>
+        </article>
+
+{% endblock content %}
